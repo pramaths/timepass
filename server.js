@@ -3,7 +3,7 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
-const cors = require('cors');
+//const cors = require('cors');
 require('dotenv').config();
 // Require the User and Company models
 const User = require('./models/user');
@@ -67,7 +67,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 const app = express();
-app.use(cors());
+//app.use(cors());
 
 // Set up Express middleware
 app.use(express.json());
