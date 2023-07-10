@@ -3,12 +3,11 @@ const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
-//const cors = require('cors');
+const cors = require('cors');
 require('dotenv').config();
 // Require the User and Company models
 const User = require('./models/user');
 const Company = require('./models/company');
-console.log(process.env.database)
 // Configure MongoDB
 mongoose.connect("mongodb+srv://pramaths848:MdNy3gukvjpzydQe@twitter.t29mhxx.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser:true,
@@ -67,7 +66,7 @@ passport.deserializeUser(async (id, done) => {
 });
 
 const app = express();
-//app.use(cors());
+app.use(cors());
 
 // Set up Express middleware
 app.use(express.json());
@@ -116,7 +115,7 @@ const isAuthenticated = (req, res, next) => {
     res.redirect('https://internbro-pramaths.vercel.app/');
   }
 };
-app.post('https://timepassss.onrender.com/api/companies',async (req, res) => {
+app.post('/api/companies',async (req, res) => {
   try {
     const { companyName, imageUrl, skills, redirectUrl, location, role } = req.body;
 
@@ -139,19 +138,16 @@ app.post('https://timepassss.onrender.com/api/companies',async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the company' });
   }
 });
-// app.get('https://timepassss.onrender.com/api/jobs', async (req, res) => {
-//   try {
-//     // Fetch all job documents from the database
-//     const jobs = await Company.find();
-// res.send("hello")
-//    // res.json(jobs);
-//   } catch (error) {
-//     console.error('Error fetching job data:', error);
-//     res.status(500).json({ error: 'An error occurred while fetching job data' });
-//   }
-// });
-app.get('/api/jobs', (req, res) => {
-  res.send('Hello from /api/jobs');
+app.get('/api/jobs', async (req, res) => {
+  try {
+    // Fetch all job documents from the database
+    const jobs = await Company.find();
+res.send("hello")
+   // res.json(jobs);
+  } catch (error) {
+    console.error('Error fetching job data:', error);
+    res.status(500).json({ error: 'An error occurred while fetching job data' });
+  }
 });
 
 // Start the server
