@@ -88,7 +88,7 @@ app.use(passport.session());
 
 // Define the routes
 app.get('/', (req, res) => {
-  res.redirect('http://localhost:3000/');
+  res.redirect('https://internbro-pramaths.vercel.app/');
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -97,13 +97,13 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
-    res.redirect('http://localhost:3000/jobs');
+    res.redirect('https://internbro-pramaths.vercel.app/jobs');
   }
 );
 
 app.get('/auth/logout', (req, res) => {
   req.logout(); // Clear the user's session
-  res.redirect('http://localhost:3000/');
+  res.redirect('https://internbro-pramaths.vercel.app/');
 });
 
 // Add authentication middleware
@@ -113,7 +113,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.redirect('http://localhost:3000/login');
+    res.redirect('https://internbro-pramaths.vercel.app/login');
   }
 };
 app.post('/api/companies',async (req, res) => {
