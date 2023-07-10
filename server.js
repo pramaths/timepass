@@ -95,7 +95,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 
 app.get(
   '/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     res.redirect('https://internbro-pramaths.vercel.app/jobs');
   }
@@ -113,10 +113,10 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.redirect('https://internbro-pramaths.vercel.app/login');
+    res.redirect('https://internbro-pramaths.vercel.app/');
   }
 };
-app.post('/api/companies',async (req, res) => {
+app.post('https://timepassss.onrender.com/api/companies',async (req, res) => {
   try {
     const { companyName, imageUrl, skills, redirectUrl, location, role } = req.body;
 
@@ -139,7 +139,7 @@ app.post('/api/companies',async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the company' });
   }
 });
-app.get('api/jobs', async (req, res) => {
+app.get('https://timepassss.onrender.com/api/jobs', async (req, res) => {
   try {
     // Fetch all job documents from the database
     const jobs = await Company.find();
