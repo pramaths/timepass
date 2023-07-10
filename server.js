@@ -142,8 +142,8 @@ app.get('/api/jobs', async (req, res) => {
   try {
     // Fetch all job documents from the database
     const jobs = await Company.find();
-res.send("hello")
-   // res.json(jobs);
+//res.send("hello")
+    res.json(jobs);
   } catch (error) {
     console.error('Error fetching job data:', error);
     res.status(500).json({ error: 'An error occurred while fetching job data' });
