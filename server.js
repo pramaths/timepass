@@ -139,7 +139,7 @@ app.post('/api/companies',async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the company' });
   }
 });
-app.get('https://timepassss.onrender.com/api/jobs', async (req, res) => {
+app.get('api/jobs', async (req, res) => {
   try {
     // Fetch all job documents from the database
     const jobs = await Company.find();
