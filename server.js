@@ -10,7 +10,7 @@ const User = require('./models/user');
 const Company = require('./models/company');
 console.log(process.env.database)
 // Configure MongoDB
-mongoose.connect(process.env.database, {
+mongoose.connect("mongodb+srv://pramaths848:MdNy3gukvjpzydQe@twitter.t29mhxx.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser:true,
  // useUnifieldTopology:true,
 })
