@@ -22,7 +22,7 @@ passport.use(
     {
       clientID: '263326962892-4m4q4islrfnubdc09ruc7mlv51gbu70m.apps.googleusercontent.com',
       clientSecret: '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',
-      callbackURL: '/auth/google/callback',
+      callbackURL: 'https://timepassss.onrender.com/auth/google/callback',
       scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
