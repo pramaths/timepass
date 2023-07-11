@@ -20,8 +20,8 @@ mongoose.connect("mongodb+srv://pramaths848:MdNy3gukvjpzydQe@twitter.t29mhxx.mon
 passport.use(
   new GoogleStrategy(
     {
-      clientID: '986977798069-p94hn8tv6escfv51jmikr9629cqv8f1p.apps.googleusercontent.com',
-      clientSecret: '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',
+      clientID: '263326962892-4m4q4islrfnubdc09ruc7mlv51gbu70m.apps.googleusercontent.com',
+      clientSecret: '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',
       callbackURL: '/auth/google/callback',
       scope: ['profile', 'email'],
     },
