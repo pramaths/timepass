@@ -11,7 +11,7 @@ const companySchema = new mongoose.Schema({
   },
     responsibility: {
     type: String,
-    required: true,
+    
   },
   skills: {
     type: [String],
@@ -19,7 +19,7 @@ const companySchema = new mongoose.Schema({
   },
   qualification: {
     type: String,
-    required: true,
+    
   },
   bonusQualification: {
     type: String,
