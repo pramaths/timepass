@@ -118,16 +118,32 @@ const isAuthenticated = (req, res, next) => {
 };
 app.post('/api/companies',async (req, res) => {
   try {
-    const { companyName, imageUrl, skills, redirectUrl, location, role } = req.body;
-
-    // Create a new company document
-    const newCompany = new Company({
+  const {
       companyName,
       imageUrl,
       skills,
       redirectUrl,
       location,
       role,
+      aboutUs,
+      responsibility,
+      qualification,
+      bonusQualification,
+    } = req.body;
+
+
+    // Create a new company document
+   const newCompany = new Company({
+      companyName,
+      imageUrl,
+      skills,
+      redirectUrl,
+      location,
+      role,
+      aboutUs,
+      responsibility,
+      qualification,
+      bonusQualification,
     });
 
     // Save the new company to the database
