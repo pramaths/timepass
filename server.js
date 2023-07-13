@@ -150,6 +150,20 @@ app.get('/api/jobs', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching job data' });
   }
 });
+app.get("api/jobs/:id", async(req,res)=>{
+  const {id}=req.params;
+  try {
+    const company = await Company.findById(id);
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
+    }
+    
+    res.json(company);
+  }catch(error){
+    console.log("i am fucked",error)
+    res.status(500).json({error:"i am fucked"})
+  }
+})
 
 // Start the server
 const port = process.env.PORT||8000;
