@@ -97,13 +97,13 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-    res.redirect('https://internbro-pramaths.vercel.app/jobs');
+    res.redirect('https://internbro.com/jobs');
   }
 );
 
 app.get('/auth/logout', (req, res) => {
   req.logout(); // Clear the user's session
-  res.redirect('https://internbro-pramaths.vercel.app/');
+  res.redirect('https://internbro.com/');
 });
 
 // Add authentication middleware
@@ -113,7 +113,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.redirect('https://internbro-pramaths.vercel.app/');
+    res.redirect('https://internbro.com/');
   }
 };
 app.post('/api/companies',async (req, res) => {
