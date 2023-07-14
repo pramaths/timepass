@@ -5,9 +5,11 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-// Require the User and Company models
+const { ensureAuthenticated } = require('./middleware/auth');
+
 const User = require('./models/user');
 const Company = require('./models/company');
+
 // Configure MongoDB
 mongoose.connect("mongodb+srv://pramaths848:MdNy3gukvjpzydQe@twitter.t29mhxx.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser:true,
@@ -155,7 +157,7 @@ app.post('/api/companies',async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the company' });
   }
 });
-app.get('/api/jobs', isAuthenticated, async (req, res) => {
+app.get('/api/jobs', ensureAuthenticated, async (req, res) => {
   try {
     // Fetch all job documents from the database
     const jobs = await Company.find();
@@ -166,7 +168,7 @@ app.get('/api/jobs', isAuthenticated, async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching job data' });
   }
 });
-app.get("/api/jobs/:id", isAuthenticated, async(req,res)=>{
+app.get("/api/jobs/:id", ensureAuthenticated, async(req,res)=>{
   const {id}=req.params;
   try {
     const company = await Company.findById(id);
