@@ -115,7 +115,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.redirect("/")
+    res.redirect("/")}
 };
 app.post('/api/companies',async (req, res) => {
   try {
