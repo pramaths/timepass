@@ -87,7 +87,14 @@ app.use(
 // Initialize Passport.js
 app.use(passport.initialize());
 app.use(passport.session());
-
+const isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    // User is authenticated
+    return next();
+  } else {
+    // User is not authenticated
+    res.redirect("/")}
+};
 // Define the routes
 app.get('/', (req, res) => {
   res.redirect('https://internbro.com/');
@@ -109,14 +116,6 @@ app.get('/auth/logout', (req, res) => {
 });
 
 // Add authentication middleware
-const isAuthenticated = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    // User is authenticated
-    return next();
-  } else {
-    // User is not authenticated
-    res.redirect("/")}
-};
 app.post('/api/companies',async (req, res) => {
   try {
   const {
