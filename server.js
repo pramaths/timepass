@@ -90,7 +90,7 @@ app.use(passport.session());
 
 // Define the routes
 app.get('/', (req, res) => {
-  res.redirect('https://internbro-pramaths.vercel.app/');
+  res.redirect('https://internbro.com/');
 });
 
 app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -115,7 +115,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.redirect('https://internbro.com/');
+    res.sendStatus(401);
   }
 };
 app.post('/api/companies',async (req, res) => {
@@ -157,7 +157,7 @@ app.post('/api/companies',async (req, res) => {
     res.status(500).json({ error: 'An error occurred while creating the company' });
   }
 });
-app.get('/api/jobs',ensureAuthenticated, async (req, res) => {
+app.get('/api/jobs',isAuthenticated, async (req, res) => {
   try {
     // Fetch all job documents from the database
     const jobs = await Company.find();
@@ -168,7 +168,7 @@ app.get('/api/jobs',ensureAuthenticated, async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching job data' });
   }
 });
-app.get("/api/jobs/:id", ensureAuthenticated , async(req,res)=>{
+app.get("/api/jobs/:id",isAuthenticated, async(req,res)=>{
   const {id}=req.params;
   try {
     const company = await Company.findById(id);
