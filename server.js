@@ -108,7 +108,7 @@ app.get(
   (req, res) => {
      const tok = jwt.sign({ googleId: req.user.googleId }, 'pramaths');
     // Assuming you have the token stored in a variable named 'token'
-localStorage.setItem('tok', tok);
+res.send(`<script>localStorage.setItem('tok', '${tok}'); window.location.href = 'https://internbro.com/jobs';</script>`);
 
     res.cookie('tok', tok); console.log("tok",tok)
     res.redirect('https://internbro.com/jobs');
