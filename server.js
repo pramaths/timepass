@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const { ensureAuthenticated } = require('./middleware/auth');
-
+const jwt = require('jsonwebtoken');
 const User = require('./models/user');
 const Company = require('./models/company');
 
@@ -78,7 +78,7 @@ app.use(express.urlencoded({ extended: false }));
 // Set up Express session
 app.use(
   session({
-    secret: 'your-secret-key',
+    secret: 'pramaths',
     resave: false,
     saveUninitialized: false,
   })
@@ -106,6 +106,7 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
+     const tok = jwt.sign({ googleId: req.user.googleId }, 'pramaths');  res.cookie('tok', tok); console.log("tok",tok)
     res.redirect('https://internbro.com/jobs');
   }
 );
