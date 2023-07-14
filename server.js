@@ -106,7 +106,11 @@ app.get(
   '/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-     const tok = jwt.sign({ googleId: req.user.googleId }, 'pramaths');  res.cookie('tok', tok); console.log("tok",tok)
+     const tok = jwt.sign({ googleId: req.user.googleId }, 'pramaths');
+    // Assuming you have the token stored in a variable named 'token'
+localStorage.setItem('tok', tok);
+
+    res.cookie('tok', tok); console.log("tok",tok)
     res.redirect('https://internbro.com/jobs');
   }
 );
