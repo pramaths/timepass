@@ -115,7 +115,7 @@ const isAuthenticated = (req, res, next) => {
     return next();
   } else {
     // User is not authenticated
-    res.sendStatus(401);
+    res.sendStatus(401).json({fucker:"go away"});
   }
 };
 app.post('/api/companies',async (req, res) => {
