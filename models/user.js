@@ -5,10 +5,6 @@ const userSchema = new mongoose.Schema({
   googleId: String,
   displayName: String,
   email: String,
-  isAdmin:{
-    type:Number,
-    default:0,
-  }
   
 },{timestamps:true});
 
