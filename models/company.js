@@ -17,6 +17,9 @@ const companySchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  stipend:{
+    type:number,
+  },
   qualification: {
     type: String,
     
